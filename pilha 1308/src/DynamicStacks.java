@@ -16,14 +16,7 @@ public class DynamicStacks {
             return true;
         }
         return false;}
-
-    public boolean isFull(){
-        if (this.topPilha == pilha.length - 1){
-            return true;
-        }
-        return false;
-    }
-
+    
 
     public Object pop(){
         if(isEmpty()){
