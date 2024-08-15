@@ -52,6 +52,7 @@ public class StaticStacks {
         //retorna o valor do ultimo elemento da pilha e decrementa o topo
         return this.pilha[this.topPilha--];
     }
+
     //cria um metodo para verificar o tamanho da pilha, ou seja, quantos itens tem dentro da pilha
     public int size(){
         if (this.isEmpty()){
