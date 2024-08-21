@@ -39,4 +39,11 @@ public class StaticLine {
         //atualiza o tamanho da fila
         tamanho++;
     }
+    public void remove(){
+        if (isEmpty()){
+            System.out.println("Não tem o que retirar!");
+            return;
+        }
+        
+    }
 }
