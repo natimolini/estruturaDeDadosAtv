@@ -1,8 +1,4 @@
 public class StaticLine {
-    //para o indice do topo da fila
-    private int topo;
-    //para o indice da base da fila
-    private int base;
     private Object[] fila;
     //para a qntd de elementos que podem ter na fila
     private int qntd;
@@ -10,11 +6,9 @@ public class StaticLine {
     private int tamanho;
 
     public StaticLine(int qntd){
-        this.base = -1;
-        this.topo = -1;
         this.qntd = qntd;
         this.tamanho = 0;
-        this.fila = new Object[5];
+        this.fila = new Object[qntd];
     }
 
     public boolean isEmpty(){
@@ -31,5 +25,18 @@ public class StaticLine {
             return true;
         }
         return false;
+    }
+
+    //adiciona um novo valor ao final da fila
+    public void add(int valor) {
+        if (isFull()) {
+            System.out.println("Não é possível adicionar!");
+            return;
+        }
+        //array indice valor
+        //indica em qual indice o novo valor sera add em qual array
+        fila[tamanho] = valor;
+        //atualiza o tamanho da fila
+        tamanho++;
     }
 }
