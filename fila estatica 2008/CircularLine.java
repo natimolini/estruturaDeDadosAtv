@@ -58,7 +58,7 @@ public class CircularLine {
         this.base = 0; // Redefine o índice base para 0
         this.topo = 0; // Redefine o índice topo para 0
         this.tamanho = 0; // Redefine o tamanho para 0, esvaziando a fila
-        for (int i = 0; i < qntd; i++) { 
+        for (int i = 0; i < qntd; i++) {
             fila[i] = null; // Define cada elemento como null, limpando o array
         }
     }
