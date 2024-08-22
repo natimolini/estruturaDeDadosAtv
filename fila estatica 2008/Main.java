@@ -19,6 +19,35 @@ public class Main {
         e.print();
         e.remove();
 
-
+        CircularLine c = new CircularLine(5);
+        System.out.println();
+        System.out.println("----Fila Circular----");
+        c.add(1);
+        c.add(2);
+        c.add(3);
+        c.print();
+        c.remove();
+        c.add(4);
+        c.add(5);
+        c.add(6);
+        c.isFull();
+        c.print();
+        c.add(7);
+        c.clear();
+        c.isEmpty();
+        c.print();
+        c.remove();
+        c.add(8);
+        c.print();
+        c.add(9);
+        c.print();
+        c.add(10);
+        c.print();
+        c.add(11);
+        c.print();
+        c.add(12);
+        c.print();
+        c.add(13);
+        c.print();
     }
 }
