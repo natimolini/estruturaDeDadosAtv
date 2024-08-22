@@ -13,7 +13,6 @@ public class StaticLine {
 
     public boolean isEmpty(){
         if (tamanho == 0){
-            System.out.println("Sua fila está vazia!");
             return true;
         }
         return false;
@@ -39,11 +38,48 @@ public class StaticLine {
         //atualiza o tamanho da fila
         tamanho++;
     }
-    public void remove(){
+    public Object remove(){
         if (isEmpty()){
+            System.out.println("Sua fila está vazia!");
             System.out.println("Não tem o que retirar!");
+            return null;
+        }
+        //atributo ara retirar o primeiro valor da fila
+        Object removeValor = fila[0];
+        //utilizado para iterar sobre os elementos e mover para "frente" o elemento
+        for (int i = 0; i < tamanho - 1; i++) {
+            fila[i] = fila[i + 1];
+        }
+        //o ultimo elemento do fila é colocado como null para poder deixar espaço para outros
+        fila[tamanho - 1] = null;
+        //diminui o numero de valores
+        tamanho--;
+
+        return removeValor;
+    }
+    public void clear() {
+        //itera sobre todos os valores da fila e seta como null
+        for (int i = 0; i < qntd; i++) {
+            fila[i] = null;
+        }
+        //zera o tamanho
+        tamanho = 0;
+    }
+    public void print() {
+        if (isEmpty()) {
+            System.out.println("Sua fila está vazia!");
+            System.out.println("Fila: []");
             return;
         }
-        
+
+        System.out.print("Fila: ");
+        System.out.print("[");
+        for (int i = 0; i < tamanho; i++) {
+            System.out.print(fila[i]);
+            if (i < tamanho - 1) {
+                System.out.print(", ");
+            }
+        }
+        System.out.println("]");
     }
 }
