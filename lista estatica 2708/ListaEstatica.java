@@ -1,4 +1,5 @@
 public class ListaEstatica {
+
     private Object[] lista;
     private int tamanho;
     private int capacidade;
@@ -18,7 +19,9 @@ public class ListaEstatica {
     public void add(int valor){
         if (isFull()){
             System.out.println("Sua lista está cheia!");
+            return;
         }
-
+        this.lista[tamanho-1]=valor;
     }
+    
 }
