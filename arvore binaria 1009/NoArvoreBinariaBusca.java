@@ -1,4 +1,3 @@
-// Classe da árvore binária de busca
 class ArvoreBinariaDeBusca {
     private NoArvoreBinaria raiz;
 
@@ -11,9 +10,14 @@ class ArvoreBinariaDeBusca {
         raiz = adicionarRecursivo(raiz, valor);
     }
 
-    // Método recursivo para inserir o valor na posição correta
     private NoArvoreBinaria adicionarRecursivo(NoArvoreBinaria atual, int valor) {
+        if (valor < 0) {
+            System.out.println(valor + " não pode ser adicionado, ele é menor que zero!");
+            return atual;
+        }
+
         if (atual == null) {
+            System.out.println("Inserido " + valor + " na árvore...");
             return new NoArvoreBinaria(valor); // Insere o novo nó onde for nulo
         }
 
@@ -30,7 +34,7 @@ class ArvoreBinariaDeBusca {
 
         return atual;
     }
-    // Método para remover um valor da árvore
+
     public void remover(int valor) {
         raiz = removerRecursivo(raiz, valor);
     }
@@ -45,77 +49,67 @@ class ArvoreBinariaDeBusca {
         } else if (valor > atual.valor) {
             atual.direita = removerRecursivo(atual.direita, valor);
         } else {
-            // Encontrou o nó a ser removido
-            // Caso 1: nó folha (sem filhos)
+            // Caso 1: Nó folha (sem filhos)
             if (atual.esquerda == null && atual.direita == null) {
-                return null;
+                System.out.println("Removendo " + valor + " que não possui filhos!");
+                return null; // Remove o nó folha
             }
 
-            // Caso 2: nó com apenas um filho
+            // Caso 2: Nó com apenas um filho
             if (atual.esquerda == null) {
-                return atual.direita; // Substitui o nó pelo seu filho direito
+                System.out.println("Removendo " + valor + " que possui 1 filho (direito)");
+                return atual.direita; // Substitui pelo filho direito
             }
             if (atual.direita == null) {
-                return atual.esquerda; // Substitui o nó pelo seu filho esquerdo
+                System.out.println("Removendo " + valor + " que possui 1 filho (esquerdo)");
+                return atual.esquerda; // Substitui pelo filho esquerdo
             }
 
-            // Caso 3: nó com dois filhos
-            // Escolhe o menor valor da subárvore direita (nó mais próximo)
-            NoArvoreBinaria menorValor = encontrarMenorValor(atual.direita);
-            atual.valor = menorValor.valor;
-            // Remove o menor valor encontrado na subárvore direita
-            atual.direita = removerRecursivo(atual.direita, menorValor.valor);
+            // Caso 3: Nó com dois filhos
+            System.out.println("Removendo " + valor + " que possui 2 filhos");
+            NoArvoreBinaria menorValor = encontrarMenorValor(atual.direita); // Encontra o menor valor da subárvore direita
+            atual.valor = menorValor.valor; // Substitui o valor do nó a ser removido pelo menor da subárvore direita
+
         }
 
         return atual;
     }
 
-    // Método para encontrar o menor valor em uma subárvore
+
     private NoArvoreBinaria encontrarMenorValor(NoArvoreBinaria atual) {
         while (atual.esquerda != null) {
             atual = atual.esquerda;
         }
         return atual;
     }
-    // Método para verificar se a árvore contém um determinado valor
+
     public boolean buscar(int valor) {
         return buscarRecursivo(raiz, valor);
     }
 
-    // Método recursivo para buscar o valor na árvore
     private boolean buscarRecursivo(NoArvoreBinaria atual, int valor) {
         if (atual == null) {
-            return false; // Valor não encontrado
+            return false;
         }
         if (valor == atual.valor) {
-            return true; // Valor encontrado
+            return true;
         }
 
         return valor < atual.valor
                 ? buscarRecursivo(atual.esquerda, valor)
                 : buscarRecursivo(atual.direita, valor);
     }
-
     // Método para imprimir a árvore de forma hierárquica
-    public void imprimirComoArvore() {
-        imprimirComoArvoreRecursivo(raiz, 0);
+    public void imprimirComoArvoreVisual() {
+        imprimirComoArvoreRecursivo(raiz, "", true);
     }
 
-    // Método recursivo para imprimir a árvore de forma visual
-    private void imprimirComoArvoreRecursivo(NoArvoreBinaria atual, int nivel) {
-        if (atual == null) {
-            return;
+    private void imprimirComoArvoreRecursivo(NoArvoreBinaria atual, String prefixo, boolean isEsquerda) {
+        if (atual != null) {
+            System.out.println(prefixo + (isEsquerda ? "├── " : "└── ") + atual.valor);
+            imprimirComoArvoreRecursivo(atual.esquerda, prefixo + (isEsquerda ? "│   " : "    "), true);
+            imprimirComoArvoreRecursivo(atual.direita, prefixo + (isEsquerda ? "│   " : "    "), false);
         }
-
-        imprimirComoArvoreRecursivo(atual.direita, nivel + 1);
-
-        for (int i = 0; i < nivel; i++) {
-            System.out.print("    "); // Indentação para mostrar o nível
-        }
-        System.out.println(atual.valor);
-
-        imprimirComoArvoreRecursivo(atual.esquerda, nivel + 1);
-    }
-}
+    }}
 
 
